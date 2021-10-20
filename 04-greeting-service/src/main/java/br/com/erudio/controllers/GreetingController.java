@@ -1,5 +1,9 @@
 package br.com.erudio.controllers;
 
+/*
+ * Nesta classe estamos lendo os valores através da classe GreetingConfiguration
+ * a classe mencionada recebe os valores de um arquivo yml de configuração.
+ */
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +24,10 @@ public class GreetingController {
 	private GreetingConfiguration configuration;
 	
 	@RequestMapping("/greeting")
-	public Greeting greeting(
-			@RequestParam(value="name",
-			defaultValue = "") String name) {
+	public Greeting greeting(@RequestParam(value="name",defaultValue = "") String name) {
 		
 		if (name.isEmpty()) name = configuration.getDefaultValue();
 		
-		return new Greeting(
-					counter.incrementAndGet(),
-					String.format(template, configuration.getGreeting(), name)
-				);
+		return new Greeting(counter.incrementAndGet(),String.format(template, configuration.getGreeting(), name));
 	}
 }
