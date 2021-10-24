@@ -10,9 +10,9 @@ import br.com.book.response.CambioResponse;
  * Nesta classe estamos abstraindo dinamicamente as informações da URL do serviço que será consumido (cambio-service)
  * Estamos usando o Feign para criar o client HTTP e consumir o serviço
  */
-@FeignClient(name="cambio-sevice", url = "localhost:8000")
+@FeignClient(name = "cambio-service")
 public interface CambioProxy {
-
+	
 	@GetMapping(value = "/cambio-service/{amount}/{from}/{to}")
 	public CambioResponse getCambio(@PathVariable("amount") Double amount, @PathVariable("from") String from, @PathVariable("to") String to);
 }

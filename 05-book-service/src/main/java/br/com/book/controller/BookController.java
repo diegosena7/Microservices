@@ -46,21 +46,20 @@ public class BookController {
 //		return book;
 //	}
 	
-	@GetMapping(value = "/{id}/{currency}")
-	public Book findBooks(@PathVariable("id") Long id, @PathVariable("currency") String currency) {
+	@GetMapping(value = "/{id}/{currency}")	
+	public Book findBook(@PathVariable("id") Long id,@PathVariable("currency") String currency) {
 		
-		book = repository.getById(id);
-		
-		if (book == null) throw new RuntimeException("Book not found");
-		
+		var book = repository.getById(id);
+		if (book == null) throw new RuntimeException("Book not Found");
+				
 		var cambio = proxy.getCambio(book.getPrice(), "USD", currency);
 		
-		String port = environment.getProperty("local.server.port");
-		
-		book.setEnvironment(port + " FEIGN");
+		var port = environment.getProperty("local.server.port");
+		book.setEnvironment(
+				"Book port: " + port + 
+				" Cambio Port " + cambio.getEnvironment());
 		book.setPrice(cambio.getConvertedValue());
 		return book;
-		
 	}
 
 }
