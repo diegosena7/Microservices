@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.cambio.model.Cambio;
 import br.com.cambio.repository.CambioRepository;
 
+/*
+ * Nesta classe estamos fazendo uma conversão de moeda, sempre de dólar (USD) para outra moeda (BRL, EUR, GBP, ARS, CLP, COP e MXN)
+ * Passamos a responsabilidade de conversão para as migrations utilizando o Flyway.
+ */
 @RestController
 @RequestMapping("cambio-service")
 public class CambioController {
@@ -28,10 +32,10 @@ public class CambioController {
 	@GetMapping(value = "/{amount}/{from}/{to}")
 	public Cambio getCambio(@PathVariable("amount") BigDecimal amount, @PathVariable("from") String from, @PathVariable("to") String to) {
 
-		cambio = repository.findByFromAndTo("TES", "TET");
+		cambio = repository.findByFromAndTo(from, to);
 		if (cambio == null) throw new RuntimeException("Currency Unsupported");
 		
-		var port = environment.getProperty("local.server.port");
+		String port = environment.getProperty("local.server.port");
 		BigDecimal conversionFactor = cambio.getConversionFactor();
 		BigDecimal convertedValue = conversionFactor.multiply(amount);
 		cambio.setConvertedValue(convertedValue.setScale(2, RoundingMode.CEILING));
