@@ -1,19 +1,15 @@
 package br.com.book.controller;
 
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import br.com.book.model.Book;
 import br.com.book.proxy.CambioProxy;
 import br.com.book.repository.BookRepository;
-import br.com.book.response.CambioResponse;
 
 @RestController
 @RequestMapping("book-service")

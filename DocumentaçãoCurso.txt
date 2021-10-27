@@ -1,5 +1,6 @@
 Neste projeto estamos criando e consumindo microserviços, usando o Springboot, Springcloud, Eureka, Feign, Flyway, API Gateway, Docker...
 Usamos o Flyway para versionar nosso banco de dados, usando suas migrations para criar as tabelas e fazer a população das mesmas com dados.
-Usamos o Eeign que é uma solução usada com o springcloud, onde podemos acessar consumir serviços de maneira dinâmica, informamos a classe responsável por acessar as URLs o nome do serviço a ser consumido usando a anotação @FeignClient.
+Usamos o Feign que é uma solução usada com o springcloud, onde podemos acessar consumir serviços de maneira dinâmica, informamos a classe responsável por acessar as URLs o nome do serviço a ser consumido usando a anotação @FeignClient.
 Usamos o Eureka para para registrar nossos serviços para que possamos realizar a conversação entre eles, ele também faz o balanceamento de carga (load balancer) dos nossos serviços.
-Usamos também o Gateway para fazer o roteamento de nossos serviços (API), além de monitoramento, métrica e resiliência da aplicação.
+Usamos também o recurso do Spring Cloud Gateway para fazer o roteamento de nossos serviços (API), além de monitoramento, métrica e resiliência da aplicação.
+Usamos o Resilience4j, para gerenciar possíveis falhas na aplicação, implementando padrões de resilência para os serviços.
