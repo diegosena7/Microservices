@@ -10,9 +10,12 @@ import org.springframework.web.client.RestTemplate;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 /*
  * Nesta classe estamos utilizando o Resilience4j que foi setado no POM da aplicação. 
  */
+@Tag(name="Foobar")
 @RestController
 @RequestMapping("book-service")
 public class FooBarController {
@@ -20,6 +23,7 @@ public class FooBarController {
 	private Logger logger = LoggerFactory.getLogger(FooBarController.class);
 	
 	//Método usando o retry na chamada
+	@Operation(summary = "Foobar")
 	@GetMapping("/foo-bar")
 	@Retry(name = "foo-bar", fallbackMethod = "fallbackMethod")//Número de tentativas de acesso após o erro, config no yml
 	public String fooBar() {
