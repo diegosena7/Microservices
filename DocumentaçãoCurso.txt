@@ -3,4 +3,5 @@ Usamos o Flyway para versionar nosso banco de dados, usando suas migrations para
 Usamos o Feign que é uma solução usada com o springcloud, onde podemos acessar consumir serviços de maneira dinâmica, informamos a classe responsável por acessar as URLs o nome do serviço a ser consumido usando a anotação @FeignClient.
 Usamos o Eureka para para registrar nossos serviços para que possamos realizar a conversação entre eles, ele também faz o balanceamento de carga (load balancer) dos nossos serviços.
 Usamos também o recurso do Spring Cloud Gateway para fazer o roteamento de nossos serviços (API), além de monitoramento, métrica e resiliência da aplicação.
-Usamos o Resilience4j, para gerenciar possíveis falhas na aplicação, implementando padrões de resilência para os serviços.
+Usamos o Resilience4j, para gerenciar possíveis falhas na aplicação, implementando padrões de resilência para os serviços. Passamos as configurações a serem aplicadas em nossos endpoints no application.yml
+Usamos o Circuit Breaker para evitar ocorrência de falhas nos serviços (book-service), esse serviço nos permite construir uma aplicação tolerante a falhas e que possa ser resiliente.
