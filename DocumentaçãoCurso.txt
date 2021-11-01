@@ -6,3 +6,22 @@ Usamos também o recurso do Spring Cloud Gateway para fazer o roteamento de nosso
 Usamos o Resilience4j, para gerenciar possíveis falhas na aplicação, implementando padrões de resilência para os serviços. Passamos as configurações a serem aplicadas em nossos endpoints no application.yml
 Usamos o Circuit Breaker para evitar ocorrência de falhas nos serviços (book-service), esse serviço nos permite construir uma aplicação tolerante a falhas e que possa ser resiliente.
 Adicionado Swagger Open API nos serviços para documentar as APIs/Endpoints criados em nossos microsserviços.
+
+**DOCKER**
+Criamos o projeto (hello-docker), onde usamos o Docker para containerizar nossa aplicação, onde criamos nosso arquivo (Dockerfile) com as respectivas configurações necessrárias.
+Registry: Local onde as docker images são armazenadas (Docker Hub é o Registry mais popular) e dentro desses Registry temos os repositórios com as images das nossas aplicações.
+Dockerfile: Arquivo responsável por estruturar como será a dockerimage/containerimage
+Container Images: Arquivo Dockerfile que foi compilado
+Containers: Imagem da aplicação já em execução
+
+Comando para baixarmos e rodar a aplicação que está em nosso Registry: docker run -p 80:80 -d dsena7/hello-docker:0.0.1-SNAPSHOT
+OBS: informamos a porta local e da aplicação usando 80:80, o nome do repositório: dsena7/hello-docker e a versão/tag: 0.0.1-SNAPSHOT
+
+Comando para paramos um container: docker container stop + (CONTAINER ID ou NAMES)
+Comando para baixar uma imagem para máquina local: docker pull + (imagem) ex: mysql
+Comando para criar uma tag no nosso Registry/Repositório: docker tag dsena7/hello-docker:0.0.1-SNAPSHOT dsena7/hello-docker:0.0.2-SNAPSHOT
+
+Arquitetura Docker: o client chama o engine que faz a comunicação com o registry (Docker Client -> Docker Engine -> Docker Registry).
+Client: Local onde setamos os comandos para comunicação com nossos containers (ex: docker push, docker run...)
+Engine: Meio de campo entre o Client e o Registry (acionamos ele ao setar o comando docker images, por exemplo), pode ser remoto (AWS e Azure, por exemplo).
+
