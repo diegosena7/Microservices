@@ -8,20 +8,37 @@ Usamos o Circuit Breaker para evitar ocorrência de falhas nos serviços (book-ser
 Adicionado Swagger Open API nos serviços para documentar as APIs/Endpoints criados em nossos microsserviços.
 
 **DOCKER**
-Criamos o projeto (hello-docker), onde usamos o Docker para containerizar nossa aplicação, onde criamos nosso arquivo (Dockerfile) com as respectivas configurações necessrárias.
+O Docker nos permite aos desenvolvedores empacotar, entregar e executar aplicações em container, facilitando o desenvolvimento, a implantação e a execução da aplicação.
+
+Criamos o projeto (hello-docker), onde usamos o Docker para criar um container com nossa aplicação, onde criamos nosso arquivo (Dockerfile) com as respectivas configurações necessárias.
 Registry: Local onde as docker images são armazenadas (Docker Hub é o Registry mais popular) e dentro desses Registry temos os repositórios com as images das nossas aplicações.
+Meu dockerhub: https://hub.docker.com/repository/docker/dsena7/hello-docker/
 Dockerfile: Arquivo responsável por estruturar como será a dockerimage/containerimage
 Container Images: Arquivo Dockerfile que foi compilado
 Containers: Imagem da aplicação já em execução
 
-Comando para baixarmos e rodar a aplicação que está em nosso Registry: docker run -p 80:80 -d dsena7/hello-docker:0.0.1-SNAPSHOT
-OBS: informamos a porta local e da aplicação usando 80:80, o nome do repositório: dsena7/hello-docker e a versão/tag: 0.0.1-SNAPSHOT
+Comando para baixarmos e executar a aplicação que está em nosso Registry: docker run -p 80:80 -d dsena7/hello-docker:0.0.1-SNAPSHOT
+OBS: informamos a porta local e da aplicação usando 80:80, o nome do repositório: dsena7/hello-docker e a versão/tag:0.0.1-SNAPSHOT
 
 Comando para paramos um container: docker container stop + (CONTAINER ID ou NAMES)
 Comando para baixar uma imagem para máquina local: docker pull + (imagem) ex: mysql
 Comando para criar uma tag no nosso Registry/Repositório: docker tag dsena7/hello-docker:0.0.1-SNAPSHOT dsena7/hello-docker:0.0.2-SNAPSHOT
+Comando para executar um container: docker run -p (porta) 80:80 + (nome da imagem) -d dsena7/hello-docker + (tag) 0.0.1-SNAPSHOT
+Comando para buscar uma image: docker search + mysql
+Comando para remover uma image: docker rmi (remove) + id
+Comando para pausar um container: docker container pause + id 
+Comando para despausar um container: docker container  unpause + id
 
 Arquitetura Docker: o client chama o engine que faz a comunicação com o registry (Docker Client -> Docker Engine -> Docker Registry).
 Client: Local onde setamos os comandos para comunicação com nossos containers (ex: docker push, docker run...)
 Engine: Meio de campo entre o Client e o Registry (acionamos ele ao setar o comando docker images, por exemplo), pode ser remoto (AWS e Azure, por exemplo).
 
+**DOCKER COMPOSE**
+O Docker Compose nos ajuda a definir e compartilhar aplicativos de vários contêineres. Com o Compose, criamos um arquivo YAML para definir os serviços.
+Usado para inicializar multiplos contêineres Docker simultâneamente, simplificando o desenvolvimento e a comunicação entre contêineres.
+
+Comando usado para inciar o Docker: docker-compose up -d
+Comando para parar TODOS os contêineres vinculados ao arquivo yml: docker-compose down (obs: devo estar no diretório onde está o arquivo yml)
+Comando para verificar os contêineres vinculados ao arquivo yml: docker-compose ps
+
+Podemos usar configurações no arquivo yml para reinicialização (ou não) do container usando o atributo restart e os valores: always, yes, no.
