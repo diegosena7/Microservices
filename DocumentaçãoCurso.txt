@@ -6,7 +6,7 @@ Usamos também o recurso do Spring Cloud Gateway para fazer o roteamento de nosso
 Usamos o Resilience4j, para gerenciar possíveis falhas na aplicação, implementando padrões de resilência para os serviços. Passamos as configurações a serem aplicadas em nossos endpoints no application.yml
 Usamos o Circuit Breaker para evitar ocorrência de falhas nos serviços (book-service), esse serviço nos permite construir uma aplicação tolerante a falhas e que possa ser resiliente.
 Adicionado Swagger Open API nos serviços para documentar as APIs/Endpoints criados em nossos microsserviços.
-
+Usamos o Zipkin e Sleuth para trabalharmos com o Distribuited Tracing Server, onde fazemos o rastreamento de requisições em nossos serviços.
 **DOCKER**
 O Docker nos permite aos desenvolvedores empacotar, entregar e executar aplicações em container, facilitando o desenvolvimento, a implantação e a execução da aplicação.
 
